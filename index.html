@@ -11,31 +11,31 @@
   <body>
     <div id="main">
       <div id="gameBoard">
-        <div class="1">O</div>
-        <div class="2">X</div>
-        <div class="3">3</div>
-        <div class="4">4</div>
-        <div class="5">5</div>
-        <div class="6">6</div>
-        <div class="7">7</div>
-        <div class="8">8</div>
-        <div class="9">9</div>
+        <div class="gameBox0 box" data-value="0"></div>
+        <div class="gameBox1 box" data-value="1"></div>
+        <div class="gameBox2 box" data-value="2"></div>
+        <div class="gameBox3 box" data-value="3"></div>
+        <div class="gameBox4 box" data-value="4"></div>
+        <div class="gameBox5 box" data-value="5"></div>
+        <div class="gameBox6 box" data-value="6"></div>
+        <div class="gameBox7 box" data-value="7"></div>
+        <div class="gameBox8 box" data-value="8"></div>
       </div>
     </div>
   </body>
 </html>
 
 <!-- PseudoCode
-    /We will start wilth CSS Grid and div will be numbered 1-9
-    1.Make a Gameboard object with gameboard array inside, players will be stored in objects with arrays, and 
+    We will start wilth CSS Grid and div will be numbered 1-9/
+    *1.Make a Gameboard object with gameboard array inside, players will be stored in objects with arrays, and 
     we can change the value from 1 to 0 or 0 to 1 to determine whose turn it is. To store state of game, we can
     push values into player arrays and the gameboard array itself. This will all be inside a factory.
     2. We can render the array by putting the array content into the respected divs.
     For ex. [1, 3, 6] goes to div 1 3 6
-    3. We can allow players to click on the divs, and add a counter that limits the clicks, 
+    *3. We can allow players to click on the divs, and add a counter that limits the clicks, 
     and we can tie it to the DOM by using event listeners.
-    4. To check winner, we're going to have list every possible solution as arrays
+    *4. To check winner, we're going to have list every possible solution as arrays
      and see if either player's array matches any. If all the divs are filled, and no winner, it will be a tie.
-    5. We will put a name input field and start game button which will unhide the content,
+    *5. We will put a name input field and start game button which will unhide the content,
     restart button function that clears everything next to the congratulate message
 -->

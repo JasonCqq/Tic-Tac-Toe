@@ -1,0 +1,15 @@
+{
+  "extends": ["airbnb-base", "prettier", "plugin:node/recommended"],
+  "plugins": ["prettier"],
+  "rules": {
+    "quotes": "off",
+    "no-unused-vars": "warn",
+    "no-console": "off",
+    "prettier/prettier": "error",
+    "func-names": "off",
+    "no-process-exit": "off",
+    "object-shorthand": "off",
+    "prettier/prettier": ["error", { "singleQuote": false }]
+  },
+  "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+}
