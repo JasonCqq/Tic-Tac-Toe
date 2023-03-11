@@ -25,11 +25,14 @@ let turnCheck = (function (n) {
 function playerAction() {
   const box = document.querySelectorAll(".box");
   let turnCheckRef = turnCheck(-1); //Reference to turnCheck fuction
+  const result = document.getElementById("result");
   for (const boxes of box) {
     boxes.addEventListener("click", () => {
       if (boxes.textContent === "O" || boxes.textContent === "X") {
+        //If box is filled, nothing happens
         void 0;
       } else if (boxes.textContent !== undefined) {
+        //Checks who's turn it is
         if (turnCheckRef % 2 === 0) {
           boxes.textContent += player2.symbol;
           player2.play(boxes.getAttribute("data-value"));
@@ -42,59 +45,59 @@ function playerAction() {
       }
       //Winning/Tie Logic to check winner each time a box is clicked.
       if (player1.playerBoard.length + player2.playerBoard.length === 9) {
-        console.log("TIE");
+        result.textContent = "Tie! No one won.";
       } else {
         //To check both player's board
         switch (player1.playerBoard.sort().join("")) {
           case "012":
-            console.log("WIN");
+            result.textContent = "Player 1 Wins! Player 2 Loses!";
             break;
           case "345":
-            console.log("WIN");
+            result.textContent = "Player 1 Wins! Player 2 Loses!";
             break;
           case "678":
-            console.log("WIN");
+            result.textContent = "Player 1 Wins! Player 2 Loses!";
             break;
           case "036":
-            console.log("WIN");
+            result.textContent = "Player 1 Wins! Player 2 Loses!";
             break;
           case "147":
-            console.log("WIN");
+            result.textContent = "Player 1 Wins! Player 2 Loses!";
             break;
           case "258":
-            console.log("WIN");
+            result.textContent = "Player 1 Wins! Player 2 Loses!";
             break;
           case "048":
-            console.log("WIN");
+            result.textContent = "Player 1 Wins! Player 2 Loses!";
             break;
           case "246":
-            console.log("WIN");
+            result.textContent = "Player 1 Wins! Player 2 Loses!";
             break;
         }
         switch (player2.playerBoard.sort().join("")) {
           case "012":
-            console.log("WIN");
+            result.textContent = "Player 2 Wins! Player 1 Loses!";
             break;
           case "345":
-            console.log("WIN");
+            result.textContent = "Player 2 Wins! Player 1 Loses!";
             break;
           case "678":
-            console.log("WIN");
+            result.textContent = "Player 2 Wins! Player 1 Loses!";
             break;
           case "036":
-            console.log("WIN");
+            result.textContent = "Player 2 Wins! Player 1 Loses!";
             break;
           case "147":
-            console.log("WIN");
+            result.textContent = "Player 2 Wins! Player 1 Loses!";
             break;
           case "258":
-            console.log("WIN");
+            result.textContent = "Player 2 Wins! Player 1 Loses!";
             break;
           case "048":
-            console.log("WIN");
+            result.textContent = "Player 2 Wins! Player 1 Loses!";
             break;
           case "246":
-            console.log("WIN");
+            result.textContent = "Player 2 Wins! Player 1 Loses!";
             break;
         }
       }
@@ -102,4 +105,18 @@ function playerAction() {
   }
 }
 
+function startButtonAction() {
+  const startMenu = document.getElementById("start");
+  const startButton = document.getElementById("startButton");
+  const gameBoard = document.getElementById("gameBoard");
+  const restartButton = document.getElementById("restartButton");
+  startButton.addEventListener("click", () => {
+    startMenu.style.display = "none";
+    startButton.style.display = "none";
+    gameBoard.style.display = "grid";
+    restartButton.style.display = "flex";
+  });
+}
+
 playerAction();
+startButtonAction();
