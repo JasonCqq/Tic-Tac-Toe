@@ -16,10 +16,9 @@
 // }
 
 //Factory function to store player values
-function createPlayer(name, turn, symbol, playerBoard) {
+function createPlayer(name, symbol, playerBoard) {
   return {
     name,
-    turn,
     symbol,
     playerBoard,
 
@@ -31,20 +30,34 @@ function createPlayer(name, turn, symbol, playerBoard) {
   };
 }
 
-const player1 = createPlayer("player1", true, "O", []);
-const player2 = createPlayer("player2", false, "X", []);
+const player1 = createPlayer("player1", "O", []);
+const player2 = createPlayer("player2", "X", []);
+
+let turnCheck = (function (n) {
+  return function () {
+    n++;
+    return n;
+  };
+})(0);
 
 //Function to make divs clickable and store player's action at the same time
 function playerAction() {
   const box = document.querySelectorAll(".box");
+  let turnCheckRef = turnCheck(-1);
   for (const boxes of box) {
-    //Add clickable boxes
     boxes.addEventListener("click", () => {
       if (boxes.textContent === "O" || boxes.textContent === "X") {
         void 0;
       } else if (boxes.textContent !== undefined) {
-        boxes.textContent += player1.symbol;
-        player1.play(boxes.getAttribute("data-value"));
+        if (turnCheckRef % 2 === 0) {
+          boxes.textContent += player2.symbol;
+          player2.play(boxes.getAttribute("data-value"));
+          turnCheckRef++;
+        } else if (turnCheckRef % 2 !== 0) {
+          boxes.textContent += player1.symbol;
+          player1.play(boxes.getAttribute("data-value"));
+          turnCheckRef++;
+        }
       }
       //Logic to check winner each time a box is clicked.
       if (player1.playerBoard.length + player2.playerBoard.length === 9) {
@@ -80,6 +93,9 @@ function playerAction() {
             break;
         }
       }
+      console.log(player1.playerBoard);
+      console.log(player2.playerBoard);
+      console.log(turnCheckRef);
     });
   }
 }
