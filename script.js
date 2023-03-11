@@ -3,17 +3,7 @@ class gameBoard {
     this.board = board;
   }
 }
-const currentBoard = new gameBoard([
-  "O",
-  "X",
-  "X",
-  "O",
-  "X",
-  "X",
-  "X",
-  "X",
-  "O",
-]);
+const currentBoard = new gameBoard([]);
 function displayBoard() {
   //Displays each array into the correct divs. But I'm not too comfortable with this code.
   const elements = [].slice.call(document.querySelectorAll("[class^=gameBox]"));
@@ -25,27 +15,37 @@ function displayBoard() {
 }
 
 //Factory function to store player values
-function createPlayer(name, turn, playerBoard) {
+function createPlayer(name, turn, symbol, playerBoard) {
   return {
-    talk() {
-      console.log(`Hello I am ${name}`);
+    name,
+    turn,
+    symbol,
+    playerBoard,
+
+    play() {
+      currentBoard.push();
+      playerBoard.push();
     },
   };
 }
 
+const player1 = createPlayer("player1", true, "O", []);
+const player2 = createPlayer("player2", false, "X", []);
+
 //Function to make divs clickable and store player's action at the same time
 function playerAction() {
   const box = document.querySelectorAll(".box");
-  const boxCounter = 0;
   for (const boxes of box) {
     boxes.addEventListener("click", () => {
-      prompt("Hey");
+      // player1.play(boxes.getAttribute("data-value"));
+      if (boxes.textContent === "O" || boxes.textContent === "X") {
+        void 0;
+      } else if (boxes.textContent !== undefined) {
+        boxes.textContent += player1.symbol;
+      }
     });
   }
 }
-
-const player1 = createPlayer("player1", true, []);
-const player2 = createPlayer("player2", false, []);
 
 displayBoard();
 playerAction();
