@@ -10,6 +10,15 @@
   </head>
   <body>
     <div id="main">
+      <div id="title">TIC-TAC-TOE</div>
+
+      <div id="start">
+        <label for="name">Name:</label>
+        <input type="text" id="nameInput" name="name" />
+
+        <button id="startButton">START GAME</button>
+      </div>
+
       <div id="gameBoard">
         <div class="gameBox0 box" data-value="0"></div>
         <div class="gameBox1 box" data-value="1"></div>
@@ -21,6 +30,8 @@
         <div class="gameBox7 box" data-value="7"></div>
         <div class="gameBox8 box" data-value="8"></div>
       </div>
+
+      <div id="end"></div>
     </div>
   </body>
 </html>
@@ -38,11 +49,4 @@
      and see if either player's array matches any. If all the divs are filled, and no winner, it will be a tie.
     *5. We will put a name input field and start game button which will unhide the content,
     restart button function that clears everything next to the congratulate message
--->
-
-<!-- Current Issues
-
--Need to know whose turn it is.
--Have the function know which player it is currently.
-
 -->
