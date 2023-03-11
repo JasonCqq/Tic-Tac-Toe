@@ -8,6 +8,10 @@ function createPlayer(name, symbol, playerBoard) {
     play(box) {
       playerBoard.push(box);
     },
+
+    clearPlayerBoard() {
+      playerBoard.length = 0;
+    },
   };
 }
 const player1 = createPlayer("player1", "O", []);
@@ -44,79 +48,76 @@ function playerAction() {
         }
       }
       //Winning/Tie Logic to check winner each time a box is clicked.
-      if (player1.playerBoard.length + player2.playerBoard.length === 9) {
+      if (
+        player1.playerBoard.length + player2.playerBoard.length === 9 &&
+        result.textContent === ""
+      ) {
         result.textContent = "Tie! No one won.";
       } else {
         //To check both player's board
-        switch (player1.playerBoard.sort().join("")) {
-          case "012":
-            result.textContent = "Player 1 Wins! Player 2 Loses!";
-            break;
-          case "345":
-            result.textContent = "Player 1 Wins! Player 2 Loses!";
-            break;
-          case "678":
-            result.textContent = "Player 1 Wins! Player 2 Loses!";
-            break;
-          case "036":
-            result.textContent = "Player 1 Wins! Player 2 Loses!";
-            break;
-          case "147":
-            result.textContent = "Player 1 Wins! Player 2 Loses!";
-            break;
-          case "258":
-            result.textContent = "Player 1 Wins! Player 2 Loses!";
-            break;
-          case "048":
-            result.textContent = "Player 1 Wins! Player 2 Loses!";
-            break;
-          case "246":
-            result.textContent = "Player 1 Wins! Player 2 Loses!";
-            break;
+        if (player1.playerBoard.sort().join("").includes("012")) {
+          result.textContent = "Player 1 Wins! Player 2 Loses!";
+        } else if (player1.playerBoard.sort().join("").includes("345")) {
+          result.textContent = "Player 1 Wins! Player 2 Loses!";
+        } else if (player1.playerBoard.sort().join("").includes("678")) {
+          result.textContent = "Player 1 Wins! Player 2 Loses!";
+        } else if (player1.playerBoard.sort().join("").includes("036")) {
+          result.textContent = "Player 1 Wins! Player 2 Loses!";
+        } else if (player1.playerBoard.sort().join("").includes("147")) {
+          result.textContent = "Player 1 Wins! Player 2 Loses!";
+        } else if (player1.playerBoard.sort().join("").includes("258")) {
+          result.textContent = "Player 1 Wins! Player 2 Loses!";
+        } else if (player1.playerBoard.sort().join("").includes("048")) {
+          result.textContent = "Player 1 Wins! Player 2 Loses!";
+        } else if (player1.playerBoard.sort().join("").includes("246")) {
+          result.textContent = "Player 1 Wins! Player 2 Loses!";
         }
-        switch (player2.playerBoard.sort().join("")) {
-          case "012":
-            result.textContent = "Player 2 Wins! Player 1 Loses!";
-            break;
-          case "345":
-            result.textContent = "Player 2 Wins! Player 1 Loses!";
-            break;
-          case "678":
-            result.textContent = "Player 2 Wins! Player 1 Loses!";
-            break;
-          case "036":
-            result.textContent = "Player 2 Wins! Player 1 Loses!";
-            break;
-          case "147":
-            result.textContent = "Player 2 Wins! Player 1 Loses!";
-            break;
-          case "258":
-            result.textContent = "Player 2 Wins! Player 1 Loses!";
-            break;
-          case "048":
-            result.textContent = "Player 2 Wins! Player 1 Loses!";
-            break;
-          case "246":
-            result.textContent = "Player 2 Wins! Player 1 Loses!";
-            break;
+
+        if (player2.playerBoard.sort().join("").includes("012")) {
+          result.textContent = "Player 2 Wins! Player 1 Loses!";
+        } else if (player2.playerBoard.sort().join("").includes("345")) {
+          result.textContent = "Player 2 Wins! Player 1 Loses!";
+        } else if (player2.playerBoard.sort().join("").includes("678")) {
+          result.textContent = "Player 2 Wins! Player 1 Loses!";
+        } else if (player2.playerBoard.sort().join("").includes("036")) {
+          result.textContent = "Player 2 Wins! Player 1 Loses!";
+        } else if (player2.playerBoard.sort().join("").includes("147")) {
+          result.textContent = "Player 2 Wins! Player 1 Loses!";
+        } else if (player2.playerBoard.sort().join("").includes("258")) {
+          result.textContent = "Player 2 Wins! Player 1 Loses!";
+        } else if (player2.playerBoard.sort().join("").includes("048")) {
+          result.textContent = "Player 2 Wins! Player 1 Loses!";
+        } else if (player2.playerBoard.sort().join("").includes("246")) {
+          result.textContent = "Player 2 Wins! Player 1 Loses!";
         }
       }
     });
   }
 }
 
-function startButtonAction() {
+//Buttons to start/restart game
+function start_restartButtonFunctions() {
   const startMenu = document.getElementById("start");
   const startButton = document.getElementById("startButton");
   const gameBoard = document.getElementById("gameBoard");
   const restartButton = document.getElementById("restartButton");
+  const result = document.getElementById("result");
   startButton.addEventListener("click", () => {
     startMenu.style.display = "none";
     startButton.style.display = "none";
     gameBoard.style.display = "grid";
     restartButton.style.display = "flex";
   });
+  restartButton.addEventListener("click", () => {
+    let box = document.querySelectorAll(".box");
+    for (const boxes of box) {
+      boxes.textContent = undefined;
+    }
+    player1.clearPlayerBoard();
+    player2.clearPlayerBoard();
+    result.textContent = "";
+  });
 }
 
 playerAction();
-startButtonAction();
+start_restartButtonFunctions();
